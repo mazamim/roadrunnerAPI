@@ -15,6 +15,8 @@ namespace roadrunnerapi.Data
 
         public DbSet<EmployeeDocument> EmployeeDocuments{ get; set; }
 
+        public DbSet<Attendance> Attendances{ get; set; }
+
     }
 
 }

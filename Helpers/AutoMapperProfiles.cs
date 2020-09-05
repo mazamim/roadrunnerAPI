@@ -20,6 +20,9 @@ namespace roadrunnerapi.Helpers
                 CreateMap<Employee, ReadEmployeeDTO>();
                    CreateMap<EmployeeDocument, ReturnallDocumentsDTO>();
         
+                  CreateMap<Attendance, ReadAttendanceDTO>();
+                  CreateMap<AddAttendaceDTO, Attendance>();
+                     CreateMap<UpdateAttendanceDTO, Attendance>();
 
                 CreateMap<AddEmployeeDTO, Employee>();
                 CreateMap<UpdateEmployeeDTO, Employee>();

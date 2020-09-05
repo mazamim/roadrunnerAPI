@@ -22,5 +22,6 @@ namespace roadrunnerapi.Models
         public string Status { get; set; }
 
          public virtual ICollection<EmployeeDocument> EmployeeDocument { get; set; }
+         public virtual ICollection<Attendance> Attendance { get; set; }
     }
 }

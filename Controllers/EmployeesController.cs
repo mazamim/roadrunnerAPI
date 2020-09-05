@@ -73,5 +73,39 @@ namespace roadrunnerapi.Controllers
                  return NoContent();
 
          }
+
+
+        [HttpPost("attendance")]
+        public ActionResult<ReadAttendanceDTO> AddPunchIn(AddAttendaceDTO atd)
+        {
+                var Model= _mapper.Map<Attendance>(atd);
+               _employeeService.SaveAttendance(Model);
+                _employeeService.SaveChanges();
+
+                var ToReturnModel = _mapper.Map<ReadAttendanceDTO>(Model);
+
+                return ToReturnModel;
+        }
+
+            [HttpPut("attendance/{id}")]
+         public ActionResult AddPunchOut(int id, UpdateAttendanceDTO updatedto)
+         {
+                var modelFromRepo = _employeeService.GetAttendanceByID(id);
+
+                if(modelFromRepo ==null)
+                {
+                    return NotFound();
+
+                }
+                _mapper.Map(updatedto,modelFromRepo);
+           
+                _employeeService.UpdateAttendance(modelFromRepo);
+                 _employeeService.SaveChanges();
+                 return NoContent();
+
+         }
+
     }
+
+
 }

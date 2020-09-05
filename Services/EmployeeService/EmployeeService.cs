@@ -84,5 +84,26 @@ namespace roadrunnerapi.Services.EmployeeService
             
              return x;
         }
+
+        public void SaveAttendance(Attendance atd)
+        {
+                 if(atd == null)
+                {
+                        throw new ArgumentNullException(nameof(atd));
+                }
+
+            _context.Attendances.Add(atd);
+        }
+
+        public void UpdateAttendance(Attendance atd)
+        {
+                         //nothing
+        }
+
+        public Attendance GetAttendanceByID(int id)
+        {
+            var x = _context.Attendances.FirstOrDefault(obj=>obj.Id==id);
+             return  x;
+        }
     }
 }

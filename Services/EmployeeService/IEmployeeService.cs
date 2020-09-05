@@ -13,10 +13,14 @@ namespace roadrunnerapi.Services.EmployeeService
          void UpdateEployee(Employee employee);
         Task <EmployeeDocument> GetPhoto(int id);
 
-         void AddDocuments(EmployeeDocument doc);
+        void AddDocuments(EmployeeDocument doc);
 
-          Task<IEnumerable<EmployeeDocument>> GetAllDocuments(int empid);
+        Task<IEnumerable<EmployeeDocument>> GetAllDocuments(int empid);
 
-            EmployeeDocument GetMain(int empid);
+          EmployeeDocument GetMain(int empid);
+
+         void SaveAttendance(Attendance atd);
+         void UpdateAttendance(Attendance atd);
+         Attendance GetAttendanceByID(int id);
     }
 }
