@@ -1,6 +1,7 @@
 
 using AutoMapper;
 using roadrunnerapi.DTO;
+using roadrunnerapi.DTO.Employee;
 using roadrunnerapi.Models;
 
 namespace roadrunnerapi.Helpers
@@ -10,25 +11,20 @@ namespace roadrunnerapi.Helpers
                public AutoMapperProfiles()
         {
         CreateMap<User, UserForListDTO>();
-        //  .ForMember(dest => dest.PhotoUrl, opt => {
-        //             opt.MapFrom(src => src.Photos.FirstOrDefault(p => p.IsMain).Url);
-        //         })
 
-            // .ForMember(dest => dest.Age, opt => opt.MapFrom(src => 
-            // src.DateOfBirth.CalculateAge())); // age
             
              CreateMap<User, UserForDetailedDTO>();
-            // .ForMember(dest => dest.PhotoUrl, opt => 
-            // opt.MapFrom(src => src.Photos.FirstOrDefault(p => p.IsMain).Url))
+   
 
-            // .ForMember(dest => dest.Age, opt => opt.MapFrom(src => 
-            // src.DateOfBirth.CalculateAge())); // age
-
-            // CreateMap<Photo, PhotosForDetailedDTO>();
-            // CreateMap<UserForUpdateDto, User>();
-            //   CreateMap<Photo, PhotoForReturnDto>();
-            //   CreateMap<PhotoForCreationDto, Photo>();
                 CreateMap<UserforRegisterDTO, User>();
+                CreateMap<Employee, ReadEmployeeDTO>();
+                   CreateMap<EmployeeDocument, ReturnallDocumentsDTO>();
+        
+
+                CreateMap<AddEmployeeDTO, Employee>();
+                CreateMap<UpdateEmployeeDTO, Employee>();
+              CreateMap<EmployeeDocument, DocumentsToRetuen>();
+            CreateMap<DocumentForCreationDto, EmployeeDocument>();
         }
 
     }

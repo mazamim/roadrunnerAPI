@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/6d626dc5-0958-4bf0-9fa9-ff82c2ea81bd/resourceGroups/roadrunnerResourceGroup/providers/Microsoft.Web/sites/roadrun",
+    "appService.deploySubpath": "bin\\release\\netcoreapp3.1\\Properties"
+}

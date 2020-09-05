@@ -9,7 +9,12 @@ namespace roadrunnerapi.Data
 
       
        public DbSet<User> Users { get; set; }
-       // public DbSet<Photo> Photos { get; set; }
+       public DbSet<Photo> Photos { get; set; }
+
+        public DbSet<Employee> Employees{ get; set; }
+
+        public DbSet<EmployeeDocument> EmployeeDocuments{ get; set; }
+
     }
 
 }

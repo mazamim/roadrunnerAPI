@@ -11,6 +11,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using mywep.API.Data;
 using roadrunnerapi.Data;
+using roadrunnerapi.Helpers;
+using roadrunnerapi.Services.EmployeeService;
 
 namespace roadrunnerapi
 {
@@ -21,17 +23,46 @@ namespace roadrunnerapi
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+   public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // public void ConfigureDevelopmentServices(IServiceCollection services)
+        // {
+        //     services.AddDbContext<DataContext>(x => {
+        //         x.UseLazyLoadingProxies();
+        //         x.UseSqlite(Configuration.GetConnectionString("DefaultConnetion"));
+        //     });
+
+        //     ConfigureServices(services);
+        // }
+
+        
+        // public void ConfigureProductionServices(IServiceCollection services)
+        // {
+        //     services.AddDbContext<DataContext>(x => {
+        //         x.UseLazyLoadingProxies();
+        //         x.UseMySql("Server=localhost;Port=3306;Database=rdb;Uid=appuser;Pwd=roadrun@2020");
+        //         // x.UseSqlServer("Server=tcp:roadrun.database.windows.net,1433;Initial Catalog=rdb;Persist Security Info=False;User ID=appuser;Password=roadrun@2020;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30");
+        //     });
+
+        //     ConfigureServices(services);
+        // }
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<DataContext>(x => x.UseSqlite
-            (Configuration.GetConnectionString("DefaultConnetion")));
+
+            services.AddDbContext<DataContext>(x => {
+                x.UseLazyLoadingProxies();
+               // x.UseMySql("Server=localhost;Port=3306;Database=rdb;Uid=appuser;Pwd=roadrun@2020");
+                x.UseSqlServer(Configuration.GetConnectionString("DefaultConnetion"));
+                
+            });
+
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper(typeof(DRepositary).Assembly);
             services.AddScoped<IAuthRepository,AuthRepository>();
             services.AddScoped<IDRepositary,DRepositary>();
+              
+              services.AddScoped<IEmployeeService,EmployeeService>();
             services.AddControllers().AddNewtonsoftJson(opt =>{
                 opt.SerializerSettings.ReferenceLoopHandling =
                 Newtonsoft.Json.ReferenceLoopHandling.Ignore;
@@ -50,6 +81,8 @@ namespace roadrunnerapi
             });
         }
 
+
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -61,14 +94,15 @@ namespace roadrunnerapi
           //  app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseCors(x=> x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-
             app.UseAuthentication();
             app.UseAuthorization();
-
+              app.UseCors(x=> x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapFallbackToController("Index","Fallback");
             });
         }
     }
