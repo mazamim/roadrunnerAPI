@@ -11,7 +11,7 @@ namespace roadrunnerapi.Models
 
         public int EmployeeId { get; set; }
 
-           public bool IsPunch { get; set; }
+        public bool IsPunch { get; set; }
         
     }
 }

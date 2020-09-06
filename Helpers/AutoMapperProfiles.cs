@@ -1,6 +1,7 @@
 
 using AutoMapper;
 using roadrunnerapi.DTO;
+using roadrunnerapi.DTO.Customers;
 using roadrunnerapi.DTO.Employee;
 using roadrunnerapi.Models;
 
@@ -28,6 +29,11 @@ namespace roadrunnerapi.Helpers
                 CreateMap<UpdateEmployeeDTO, Employee>();
               CreateMap<EmployeeDocument, DocumentsToRetuen>();
             CreateMap<DocumentForCreationDto, EmployeeDocument>();
+
+            //customer
+              CreateMap<Customer, ReadCustomerDTO>();
+              CreateMap<AddCustomerDTO, Customer>();
+              CreateMap<UpdateCustomerDTO, Customer>();
         }
 
     }
