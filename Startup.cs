@@ -12,6 +12,8 @@ using Microsoft.IdentityModel.Tokens;
 using mywep.API.Data;
 using roadrunnerapi.Data;
 using roadrunnerapi.Helpers;
+using roadrunnerapi.Services.ClientService;
+using roadrunnerapi.Services.CustomerService;
 using roadrunnerapi.Services.EmployeeService;
 
 namespace roadrunnerapi
@@ -61,6 +63,9 @@ namespace roadrunnerapi
             services.AddAutoMapper(typeof(DRepositary).Assembly);
             services.AddScoped<IAuthRepository,AuthRepository>();
             services.AddScoped<IDRepositary,DRepositary>();
+             services.AddScoped<IDRepositary,DRepositary>();
+              services.AddScoped<IcustomerService,CustomerService>();
+                 services.AddScoped<IClientService,ClientService>();
               
               services.AddScoped<IEmployeeService,EmployeeService>();
             services.AddControllers().AddNewtonsoftJson(opt =>{

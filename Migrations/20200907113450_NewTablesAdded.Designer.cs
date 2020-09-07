@@ -10,7 +10,7 @@ using roadrunnerapi.Data;
 namespace roadrunnerapi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200906123524_NewTablesAdded")]
+    [Migration("20200907113450_NewTablesAdded")]
     partial class NewTablesAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -69,6 +69,9 @@ namespace roadrunnerapi.Migrations
                     b.Property<string>("Mobile")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.ToTable("Clients");
@@ -95,6 +98,9 @@ namespace roadrunnerapi.Migrations
 
                     b.Property<string>("Mobile")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 

@@ -9,6 +9,7 @@ namespace roadrunnerapi.Models
         public double Rate { get; set; }
         public string Category { get; set; }
         public string Remarks { get; set; }
+       
         public virtual Client Client { get; set; }
         public int ClientId { get; set; }
         
