@@ -38,12 +38,13 @@ namespace roadrunnerapi.Services.ClientService
 
         public bool SaveChanges()
         {
-            throw new System.NotImplementedException();
+             return (_context.SaveChanges()>=0);
         }
 
         public void UpdateClient(Client client)
         {
-            throw new System.NotImplementedException();
+            
+             //nothing
         }
     }
 }

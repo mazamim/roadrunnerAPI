@@ -42,9 +42,9 @@ namespace roadrunnerapi.Controllers
         }
 
                [HttpPost]
-        public ActionResult<ReadClientDTO> AddClient(AddClientDTO customer)
+        public ActionResult<ReadClientDTO> AddClient(AddClientDTO client)
         {
-                var Model= _mapper.Map<Client>(customer);
+                var Model= _mapper.Map<Client>(client);
                _apiService.CreateClient(Model);
                 _apiService.SaveChanges();
 

@@ -26,7 +26,13 @@ namespace roadrunnerapi.Controllers
           public async Task <ActionResult <IEnumerable<ReadCustomerDTO>>> GetAll()
         {
 	            var list = await _apiService.GetAllCustomer();
-	            return Ok(_mapper.Map<IEnumerable<ReadCustomerDTO>>(list));
+             if(list !=null )
+            {
+                    return Ok(_mapper.Map<IEnumerable<ReadCustomerDTO>>(list));
+
+            }
+                return NotFound();
+	            
         } 
 
             [HttpGet("{id}",Name="GetCustomerById")]

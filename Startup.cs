@@ -63,9 +63,9 @@ namespace roadrunnerapi
             services.AddAutoMapper(typeof(DRepositary).Assembly);
             services.AddScoped<IAuthRepository,AuthRepository>();
             services.AddScoped<IDRepositary,DRepositary>();
-             services.AddScoped<IDRepositary,DRepositary>();
-              services.AddScoped<IcustomerService,CustomerService>();
-                 services.AddScoped<IClientService,ClientService>();
+            services.AddScoped<IDRepositary,DRepositary>();
+            services.AddScoped<IcustomerService,CustomerService>();
+            services.AddScoped<IClientService,ClientService>();
               
               services.AddScoped<IEmployeeService,EmployeeService>();
             services.AddControllers().AddNewtonsoftJson(opt =>{
