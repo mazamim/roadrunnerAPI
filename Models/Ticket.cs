@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace roadrunnerapi.Models
 {
     public class Ticket
@@ -12,5 +15,11 @@ namespace roadrunnerapi.Models
         public int CustomerId { get; set; }
         public virtual Client Client { get; set; }
         public int ClientId { get; set; }
+
+        public virtual ICollection<EmployeeTicket> EmployeeTicket { get; set; }
+
+        public DateTime Created { get; set; }
+        public DateTime Updated { get; set; }
+
     }
 }

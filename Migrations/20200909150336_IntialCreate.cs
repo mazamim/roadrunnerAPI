@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace roadrunnerapi.Migrations
 {
-    public partial class NewTablesAdded : Migration
+    public partial class IntialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -124,7 +124,9 @@ namespace roadrunnerapi.Migrations
                     Status = table.Column<string>(nullable: true),
                     Remarks = table.Column<string>(nullable: true),
                     CustomerId = table.Column<int>(nullable: false),
-                    ClientId = table.Column<int>(nullable: false)
+                    ClientId = table.Column<int>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false),
+                    Updated = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -213,6 +215,32 @@ namespace roadrunnerapi.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "EmployeeTickets",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmployeeId = table.Column<int>(nullable: false),
+                    TicketId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeeTickets", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EmployeeTickets_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EmployeeTickets_Tickets_TicketId",
+                        column: x => x.TicketId,
+                        principalTable: "Tickets",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Attendances_EmployeeId",
                 table: "Attendances",
@@ -222,6 +250,16 @@ namespace roadrunnerapi.Migrations
                 name: "IX_EmployeeDocuments_EmployeeId",
                 table: "EmployeeDocuments",
                 column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeeTickets_EmployeeId",
+                table: "EmployeeTickets",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeeTickets_TicketId",
+                table: "EmployeeTickets",
+                column: "TicketId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Photos_UserId",
@@ -253,16 +291,19 @@ namespace roadrunnerapi.Migrations
                 name: "EmployeeDocuments");
 
             migrationBuilder.DropTable(
+                name: "EmployeeTickets");
+
+            migrationBuilder.DropTable(
                 name: "Photos");
 
             migrationBuilder.DropTable(
                 name: "RateCards");
 
             migrationBuilder.DropTable(
-                name: "Tickets");
+                name: "Employees");
 
             migrationBuilder.DropTable(
-                name: "Employees");
+                name: "Tickets");
 
             migrationBuilder.DropTable(
                 name: "Users");

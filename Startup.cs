@@ -15,6 +15,8 @@ using roadrunnerapi.Helpers;
 using roadrunnerapi.Services.ClientService;
 using roadrunnerapi.Services.CustomerService;
 using roadrunnerapi.Services.EmployeeService;
+using roadrunnerapi.Services.RateCardService;
+using roadrunnerapi.Services.TicketService;
 
 namespace roadrunnerapi
 {
@@ -66,6 +68,8 @@ namespace roadrunnerapi
             services.AddScoped<IDRepositary,DRepositary>();
             services.AddScoped<IcustomerService,CustomerService>();
             services.AddScoped<IClientService,ClientService>();
+            services.AddScoped<ITicketService,TicketService>();
+            services.AddScoped<IRateCardService,RateCardService>();
               
               services.AddScoped<IEmployeeService,EmployeeService>();
             services.AddControllers().AddNewtonsoftJson(opt =>{

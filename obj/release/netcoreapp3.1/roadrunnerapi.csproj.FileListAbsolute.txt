@@ -91,3 +91,4 @@ I:\New Projects\roadrunner\roadrunnerapi\obj\release\netcoreapp3.1\roadrunnerapi
 I:\New Projects\roadrunner\roadrunnerapi\obj\release\netcoreapp3.1\roadrunnerapi.genruntimeconfig.cache
 I:\New Projects\roadrunner\roadrunnerapi\bin\release\netcoreapp3.1\Castle.Core.dll
 I:\New Projects\roadrunner\roadrunnerapi\bin\release\netcoreapp3.1\Microsoft.EntityFrameworkCore.Proxies.dll
+I:\New Projects\roadrunner\roadrunnerapi\bin\release\netcoreapp3.1\CloudinaryDotNet.dll

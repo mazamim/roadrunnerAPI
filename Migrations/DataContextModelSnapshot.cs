@@ -191,6 +191,28 @@ namespace roadrunnerapi.Migrations
                     b.ToTable("EmployeeDocuments");
                 });
 
+            modelBuilder.Entity("roadrunnerapi.Models.EmployeeTicket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TicketId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("TicketId");
+
+                    b.ToTable("EmployeeTickets");
+                });
+
             modelBuilder.Entity("roadrunnerapi.Models.Photo", b =>
                 {
                     b.Property<int>("Id")
@@ -268,6 +290,9 @@ namespace roadrunnerapi.Migrations
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
@@ -282,6 +307,9 @@ namespace roadrunnerapi.Migrations
 
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -339,6 +367,21 @@ namespace roadrunnerapi.Migrations
                     b.HasOne("roadrunnerapi.Models.Employee", "Employee")
                         .WithMany("EmployeeDocument")
                         .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("roadrunnerapi.Models.EmployeeTicket", b =>
+                {
+                    b.HasOne("roadrunnerapi.Models.Employee", "Employee")
+                        .WithMany("EmployeeTicket")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("roadrunnerapi.Models.Ticket", "Ticket")
+                        .WithMany("EmployeeTicket")
+                        .HasForeignKey("TicketId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

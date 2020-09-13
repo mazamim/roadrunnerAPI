@@ -23,6 +23,9 @@ namespace roadrunnerapi.Data
         public DbSet<RateCard> RateCards{ get; set; }
 
         public DbSet<Ticket> Tickets{ get; set; }
+        public DbSet<EmployeeTicket> EmployeeTickets{ get; set; }
+
+        
 
     }
 
