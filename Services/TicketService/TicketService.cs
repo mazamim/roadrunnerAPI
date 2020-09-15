@@ -19,6 +19,11 @@ namespace roadrunnerapi.Services.TicketService
 
         }
 
+        public void AddDocuments(TicketDocumet doc)
+        {
+            throw new NotImplementedException();
+        }
+
         public void CreatebulkRecord(List<Ticket> collection)
          {
                   if(collection == null)
@@ -47,8 +52,15 @@ namespace roadrunnerapi.Services.TicketService
 
         public async Task<IEnumerable<Ticket>> GetAllTicket()
         {
-             var x = await(_context.Tickets.ToListAsync());
+             var x =await _context.Tickets
+                .Where(obj=>obj.Status=="Assigned").ToListAsync();
                  return  x;
+        }
+
+        public async Task<IEnumerable<TicketDocumet>> GetAllTicketDocuments(int tktID)
+        {
+                var x  = await _context.TicketDocumets.Where(obj=>obj.TicketId==tktID).ToListAsync();
+             return x;
         }
 
         public async Task<Ticket> GetSingleTicketbyID(int id)

@@ -54,6 +54,9 @@ namespace roadrunnerapi.Helpers
               CreateMap<Ticket, ReadTicketDTO>()
               .ForMember(d => d.CustomerName, o => o.MapFrom(s => s.Customer.CustomerName))
               .ForMember(d => d.ClientName, o => o.MapFrom(s => s.Client.ClientName));
+            CreateMap<TicketDocumet, TicketToRetuen>();
+            CreateMap<TicketPicForCreationDto, TicketDocumet>();
+              CreateMap<TicketDocumet, ReturnallTicketDocumentsDTO>();
          
               
           CreateMap<EmployeeTicket, ListTEmp>()

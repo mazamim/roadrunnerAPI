@@ -10,12 +10,16 @@ namespace roadrunnerapi.Services.TicketService
         
         bool SaveChanges();
          Task<IEnumerable<Ticket>> GetAllTicket();
+       //   Task<IEnumerable<Ticket>> GetAllTicketByStatus(string status);
 
          Task<Ticket> GetSingleTicketbyID(int id);
         void CreatebulkRecord(List<Ticket> collection);
          void UpdateTicket(Ticket ticket);
 
           Task<IEnumerable<EmployeeTicket>> GetAllEmpTicket(int ticketID);
+          
+        void AddDocuments(TicketDocumet doc);
+        Task<IEnumerable<TicketDocumet>> GetAllTicketDocuments(int tktID);
          
     }
 }

@@ -14,8 +14,10 @@ namespace roadrunnerapi.DTO.Tickets
         public string Status { get; set; }
          public string Remarks { get; set; }
         public string CustomerName { get; set; }
+         public int CustomerId { get; set; }
       
         public string ClientName { get; set; }
+           public int ClientId { get; set; }
           public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
 
