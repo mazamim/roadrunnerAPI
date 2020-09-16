@@ -10,7 +10,8 @@ namespace roadrunnerapi.Services.RateCardService
         bool SaveChanges();
          Task<IEnumerable<RateCard>> GetAllRateCard();
         Task <RateCard> GetRateCardByID(int id);
-         //void CreateCustomer(RateCard customer);
+         void CreatebulkRecord(List<RateCard> collection);
+                
          void UpdateRateCard(RateCard customer);
     }
 }

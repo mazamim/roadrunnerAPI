@@ -1,28 +1,31 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using roadrunnerapi.DTO.RateCard;
+using roadrunnerapi.Models;
 using roadrunnerapi.Services.RateCardService;
 
 namespace roadrunnerapi.Controllers
 {
-      // [Authorize]
+
+   // [Authorize]
     [ApiController]
     [Route("[controller]")]
-    public class RateCardController: ControllerBase
+    public class RateCardController:ControllerBase
     {
-        
-        private readonly IRateCardService _apiService;
         private readonly IMapper _mapper;
-
-        public RateCardController(IRateCardService ratecardservice,IMapper mapper)
+        private readonly IRateCardService _apiService;
+        
+        public RateCardController(IMapper mapper, IRateCardService ratecard )
         {
-            _apiService = ratecardservice;
             _mapper = mapper;
+            _apiService = ratecard;
+
         }
 
-                     [HttpGet("GetAll")]
+               [HttpGet("GetAll")]
           public async Task <ActionResult <IEnumerable<ReadRateCardDTO>>> GetAll()
         {
 	            var list = await _apiService.GetAllRateCard();
@@ -34,5 +37,18 @@ namespace roadrunnerapi.Controllers
                 return NotFound();
 	            
         } 
+
+        [HttpPost]
+        public ActionResult AddbulkRateCard(List<AddRateCardDTO> tickets)
+        {
+            List<RateCard> models = new List<RateCard>();
+                foreach(var item in tickets)  {
+                models.Add(_mapper.Map<RateCard>(item));
+            
+                }
+               _apiService.CreatebulkRecord(models);
+                _apiService.SaveChanges();
+                return Ok(200);
+        }
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace roadrunnerapi.Migrations
 {
-    public partial class IntialCreate : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -241,6 +241,57 @@ namespace roadrunnerapi.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "RateTicket",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RateCardId = table.Column<int>(nullable: true),
+                    TicketId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RateTicket", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RateTicket_RateCards_RateCardId",
+                        column: x => x.RateCardId,
+                        principalTable: "RateCards",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_RateTicket_Tickets_TicketId",
+                        column: x => x.TicketId,
+                        principalTable: "Tickets",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TicketDocumets",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Url = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    DateAdded = table.Column<DateTime>(nullable: false),
+                    IsMain = table.Column<bool>(nullable: false),
+                    PublicId = table.Column<string>(nullable: true),
+                    IsApproved = table.Column<bool>(nullable: false),
+                    TicketId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TicketDocumets", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TicketDocumets_Tickets_TicketId",
+                        column: x => x.TicketId,
+                        principalTable: "Tickets",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Attendances_EmployeeId",
                 table: "Attendances",
@@ -272,6 +323,21 @@ namespace roadrunnerapi.Migrations
                 column: "ClientId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RateTicket_RateCardId",
+                table: "RateTicket",
+                column: "RateCardId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RateTicket_TicketId",
+                table: "RateTicket",
+                column: "TicketId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TicketDocumets_TicketId",
+                table: "TicketDocumets",
+                column: "TicketId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Tickets_ClientId",
                 table: "Tickets",
                 column: "ClientId");
@@ -297,16 +363,22 @@ namespace roadrunnerapi.Migrations
                 name: "Photos");
 
             migrationBuilder.DropTable(
-                name: "RateCards");
+                name: "RateTicket");
+
+            migrationBuilder.DropTable(
+                name: "TicketDocumets");
 
             migrationBuilder.DropTable(
                 name: "Employees");
 
             migrationBuilder.DropTable(
-                name: "Tickets");
+                name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "RateCards");
+
+            migrationBuilder.DropTable(
+                name: "Tickets");
 
             migrationBuilder.DropTable(
                 name: "Clients");

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace roadrunnerapi.Models
 {
     public class RateCard
@@ -12,6 +14,7 @@ namespace roadrunnerapi.Models
        
         public virtual Client Client { get; set; }
         public int ClientId { get; set; }
+        public virtual ICollection<RateTicket> RateTicket { get; set; }
         
     }
 }

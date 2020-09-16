@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,21 @@ namespace roadrunnerapi.Services.RateCardService
             _context = context;
 
         }
+
+        public void CreatebulkRecord(List<RateCard> collection)
+        {
+              if(collection == null)
+                {
+                        throw new ArgumentNullException(nameof(collection));
+                }
+                foreach(var item in collection)
+                
+                {
+                          _context.RateCards.Add(item);
+
+                }
+        }
+
         public async Task<IEnumerable<RateCard>> GetAllRateCard()
         {
                  var x = await(_context.RateCards.ToListAsync());

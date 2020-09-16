@@ -277,6 +277,28 @@ namespace roadrunnerapi.Migrations
                     b.ToTable("RateCards");
                 });
 
+            modelBuilder.Entity("roadrunnerapi.Models.RateTicket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("RateCardId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TicketId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RateCardId");
+
+                    b.HasIndex("TicketId");
+
+                    b.ToTable("RateTicket");
+                });
+
             modelBuilder.Entity("roadrunnerapi.Models.Ticket", b =>
                 {
                     b.Property<int>("Id")
@@ -435,6 +457,19 @@ namespace roadrunnerapi.Migrations
                     b.HasOne("roadrunnerapi.Models.Client", "Client")
                         .WithMany()
                         .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("roadrunnerapi.Models.RateTicket", b =>
+                {
+                    b.HasOne("roadrunnerapi.Models.RateCard", "RateCard")
+                        .WithMany("RateTicket")
+                        .HasForeignKey("RateCardId");
+
+                    b.HasOne("roadrunnerapi.Models.Ticket", "Ticket")
+                        .WithMany("RateTicket")
+                        .HasForeignKey("TicketId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

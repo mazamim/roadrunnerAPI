@@ -17,6 +17,7 @@ namespace roadrunnerapi.Models
         public int ClientId { get; set; }
 
         public virtual ICollection<EmployeeTicket> EmployeeTicket { get; set; }
+        public virtual ICollection<RateTicket> RateTicket { get; set; }
         public virtual ICollection<TicketDocumet> TicketDocument { get; set; }
 
         public DateTime Created { get; set; }

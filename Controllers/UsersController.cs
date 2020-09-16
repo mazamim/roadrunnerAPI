@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using roadrunnerapi.Data;
 using roadrunnerapi.DTO;
+using roadrunnerapi.DTO.RateCard;
+using roadrunnerapi.Models;
 
 namespace roadrunnerapi.Controllers
 {
@@ -30,6 +33,8 @@ namespace roadrunnerapi.Controllers
             return Ok(userToReturn);
 
         }
+
+ 
         
     }
 }

@@ -55,6 +55,7 @@ namespace roadrunnerapi.Controllers
                     var uploadParams = new ImageUploadParams()
                     {
                         File = new FileDescription(file.Name, stream),
+                        PublicId = "Catcom/Tickets/" + tktId +"/"+ file.FileName,
                         Transformation = new Transformation()
                             .Width(500).Height(500).Crop("fill").Gravity("face")
                     };
