@@ -50,5 +50,49 @@ namespace roadrunnerapi.Controllers
                 _apiService.SaveChanges();
                 return Ok(200);
         }
+
+[HttpPost("updaterates/{tkt}")]
+       public ActionResult UpdateRateTicket(List<AddRatestoTicketDto> adratestoticket,int tkt)
+        {
+            List<RateCardTicket> models = new List<RateCardTicket>();
+                foreach(var item in adratestoticket)  {
+               models.Add(_mapper.Map<RateCardTicket>(item));
+                 
+                 
+            
+                }
+               _apiService.UpdateRatecardtoTicket(models,tkt);
+                _apiService.SaveChanges();
+                return Ok(200);
+        }
+
+
+        [HttpPost("addrates")]
+        public ActionResult AddRatetoaTicket(List<AddRateCardtoTicketDTO> tickets)
+        {
+            List<RateCardTicket> models = new List<RateCardTicket>();
+                foreach(var item in tickets)  {
+                models.Add(_mapper.Map<RateCardTicket>(item));
+            
+                }
+               _apiService.CreateRatetoaTicket(models);
+                _apiService.SaveChanges();
+                return Ok(200);
+        }
+
+
+                    [HttpGet("ratesbyticket/{tkt}")]
+          public async Task <ActionResult <IEnumerable<RatecardtoReturnforTicket>>> Getrates(int tkt)
+        {
+	            var list = await _apiService.Getratesbyticket(tkt);
+             if(list !=null )
+            {
+               return Ok(_mapper.Map<IEnumerable<RatecardtoReturnforTicket>>(list));
+
+            }
+                return NotFound();
+	            
+        } 
+
     }
 }

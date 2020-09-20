@@ -48,6 +48,23 @@ namespace roadrunnerapi.Helpers
               CreateMap<RateCard, ReadRateCardDTO>()
               .ForMember(d => d.ClientName, o => o.MapFrom(s => s.Client.ClientName));
               CreateMap<AddRateCardDTO, RateCard>();
+      
+                CreateMap<AddRateCardtoTicketDTO, RateCardTicket>();
+
+                CreateMap<RateCardTicket, AddRateCardtoTicketDTO>()
+               .ForMember(d => d.RateCardId, o => o.MapFrom(s => s.RateCard.Id));
+              CreateMap<RateCardTicket, RatecardtoReturnforTicket>()
+              .ForMember(d => d.RateCardID, o => o.MapFrom(s => s.RateCard.Id))
+              .ForMember(d => d.Rate, o => o.MapFrom(s => s.RateCard.Rate))
+              .ForMember(d => d.RateCardName, o => o.MapFrom(s => s.RateCard.Sor));
+                
+                  CreateMap<AddRatestoTicketDto, RateCardTicket>();
+// .BeforeMap((s,d)=>{
+
+//   s.RateCardID=d.RateCard.Id;
+// });
+           
+            
               //CreateMap<UpdateClientDTO, Client>();
 
                  //Ticket

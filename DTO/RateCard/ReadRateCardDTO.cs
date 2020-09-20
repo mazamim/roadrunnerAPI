@@ -11,7 +11,7 @@ namespace roadrunnerapi.DTO.RateCard
         public double Rate { get; set; }
         public string Category { get; set; }
         public string Remarks { get; set; }
-       
+       public int ClientId { get; set; }
         public string ClientName { get; set; }
     }
 }

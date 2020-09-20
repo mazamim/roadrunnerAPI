@@ -13,5 +13,13 @@ namespace roadrunnerapi.Services.RateCardService
          void CreatebulkRecord(List<RateCard> collection);
                 
          void UpdateRateCard(RateCard customer);
+
+          void CreateRatetoaTicket(List<RateCardTicket> collection);
+
+        Task <IEnumerable<RateCardTicket>>  Getratesbyticket(int tkt);
+
+        void UpdateRatecardtoTicket(List<RateCardTicket> collection,int tktid);
+
+
     }
 }
