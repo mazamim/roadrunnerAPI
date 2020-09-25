@@ -74,6 +74,8 @@ namespace roadrunnerapi.Helpers
             CreateMap<TicketDocumet, TicketToRetuen>();
             CreateMap<TicketPicForCreationDto, TicketDocumet>();
               CreateMap<TicketDocumet, ReturnallTicketDocumentsDTO>();
+             CreateMap<UpdateTicketDTO, Ticket>();
+              
          
               
           CreateMap<EmployeeTicket, ListTEmp>()

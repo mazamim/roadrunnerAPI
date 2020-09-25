@@ -141,6 +141,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+@udhsin/ngx-image-viewer
+MIT
+
 cdk-table-exporter
 Apache-2.0
 

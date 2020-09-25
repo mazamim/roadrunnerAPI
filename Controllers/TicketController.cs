@@ -84,6 +84,25 @@ namespace roadrunnerapi.Controllers
                 return Ok(200);
         }
 
+
+                 [HttpPut("{id}")]
+         public async Task<ActionResult> UpdateTicket(int id, UpdateTicketDTO updatedto)
+         {
+                var modelFromRepo =await _apiService.GetSingleTicketbyID(id);
+
+                if(modelFromRepo ==null)
+                {
+                    return NotFound();
+
+                }
+                _mapper.Map(updatedto,modelFromRepo);
+           
+                _apiService.UpdateTicket(modelFromRepo);
+                 _apiService.SaveChanges();
+                 return NoContent();
+
+         }
+
      
     }
 }

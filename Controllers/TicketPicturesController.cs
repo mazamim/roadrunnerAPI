@@ -28,8 +28,8 @@ namespace roadrunnerapi.Controllers
             IOptions<CloudinarySettings> cloudinaryConfig)
             {
                  _cloudinaryConfig = cloudinaryConfig;
-            _mapper = mapper;
-        _Service = Service;
+                 _mapper = mapper;
+                _Service = Service;
 
             Account acc = new Account(
                 _cloudinaryConfig.Value.CloudName,
@@ -96,5 +96,43 @@ namespace roadrunnerapi.Controllers
                return Ok(_mapper.Map<IEnumerable<ReturnallTicketDocumentsDTO>>(documents));
 
         }
+
+
+//   [HttpDelete("{id}")]
+//         public async Task<IActionResult> DeletePhoto(int id)
+//         {
+           
+
+
+//             var photoFromRepo = await _repo.GetPhoto(id);
+
+//             if (photoFromRepo.IsMain)
+//                 return BadRequest("You cannot delete your main photo");
+
+
+//             if (photoFromRepo.PublicId != null)
+//             {
+//                 var deleteParams = new DeletionParams(photoFromRepo.PublicId);
+//                 var result = _cloudinary.Destroy(deleteParams);
+
+//                 if (result.Result == "ok")
+//                 {
+//                     _repo.Delete(photoFromRepo);
+//                 }
+//             }
+
+//             if (photoFromRepo.PublicId == null)
+//             {
+//                 _repo.Delete(photoFromRepo);
+//             }
+
+//             if (await _repo.SaveAll())
+//                 return Ok();
+
+//             return BadRequest("Failed to delete photo");
+//         }
+
+
+
     }
 }
